@@ -180,9 +180,9 @@
 		F2D595AA2CB88D75004FFAD0 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				F208E0B32CB8912900951A1D /* Home */,
 				F208E0B12CB8911800951A1D /* Details */,
 				F208E0B22CB8911E00951A1D /* NewPost */,
-				F208E0B32CB8912900951A1D /* Home */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
