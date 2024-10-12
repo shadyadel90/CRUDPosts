@@ -2,7 +2,7 @@ import UIKit
 
 class HomeVC: UITableViewController {
 
-    let network: NetworkRepository = NetworkService()
+    let network: FetchDatafromNetwork = NetworkService()
     var posts = [Post]()
     var images = [UIImage]()
     
@@ -14,6 +14,7 @@ class HomeVC: UITableViewController {
         network.fetchDataFromApi { result in
             switch result {
             case .success(let success):
+                self.posts = [Post]()
                 self.posts = success
                 self.fetchImages()
             case .failure(let failure):

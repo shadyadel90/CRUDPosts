@@ -104,6 +104,9 @@
                                         <buttonConfiguration key="configuration" style="filled" title="Add">
                                             <color key="baseBackgroundColor" systemColor="systemGreenColor"/>
                                         </buttonConfiguration>
+                                        <connections>
+                                            <action selector="addNewPostBtnClicked:" destination="5i2-ef-okV" eventType="touchUpInside" id="87l-Jm-wDF"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <constraints>
@@ -122,6 +125,11 @@
                             <constraint firstItem="PVf-y9-occ" firstAttribute="trailing" secondItem="SEJ-r1-sy7" secondAttribute="trailing" constant="-20" id="wZ8-12-bNa"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="imgNewPostImage" destination="LfW-iU-jGw" id="Y3y-aI-eJU"/>
+                        <outlet property="txtNewPostMessage" destination="udd-Z5-DmU" id="bEE-TH-aK2"/>
+                        <outlet property="txtNewPostTitle" destination="S96-JB-yz6" id="evN-Ej-fm0"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kSV-K2-EsY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -161,6 +169,9 @@
                                                 <buttonConfiguration key="configuration" style="filled" title="Delete" cornerStyle="medium">
                                                     <color key="baseBackgroundColor" systemColor="systemRedColor"/>
                                                 </buttonConfiguration>
+                                                <connections>
+                                                    <action selector="deletePostBtnClicked:" destination="aup-wk-Dbq" eventType="touchUpInside" id="826-mQ-uX8"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A76-qs-TUP">
                                                 <rect key="frame" x="215" y="0.0" width="175" height="60.666666666666664"/>
@@ -168,6 +179,9 @@
                                                 <buttonConfiguration key="configuration" style="filled" title="Save" cornerStyle="medium">
                                                     <color key="baseBackgroundColor" systemColor="systemTealColor"/>
                                                 </buttonConfiguration>
+                                                <connections>
+                                                    <action selector="updatePostBtnClicked:" destination="aup-wk-Dbq" eventType="touchUpInside" id="gA0-NZ-GRx"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <constraints>
