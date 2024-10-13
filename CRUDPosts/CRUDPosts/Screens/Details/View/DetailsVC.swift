@@ -48,14 +48,14 @@ class DetailsVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
 
     private func bindViewModel() {
         viewModel.didDeletePost = { [weak self] in
-            DispatchQueue.main.async {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                 self?.view.hideLoadingIndicator()
                 self?.navigationController?.popViewController(animated: true)
             }
         }
 
         viewModel.didUpdatePost = { [weak self] in
-            DispatchQueue.main.async {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
                 self?.view.hideLoadingIndicator()
                 self?.navigationController?.popViewController(animated: true)
             }

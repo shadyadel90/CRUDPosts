@@ -34,7 +34,7 @@ class NewPostVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
 
     private func bindViewModel() {
         viewModel.didCreatePost = { [weak self] in
-            DispatchQueue.main.async {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                 self?.view.hideLoadingIndicator()
                 self?.navigationController?.popViewController(animated: true)
             }

@@ -7,6 +7,9 @@ class HomeVC: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         bindViewModel()
+        
+    }
+    override func viewWillAppear(_ animated: Bool) {
         viewModel.fetchPosts()
     }
 

@@ -25,7 +25,7 @@ class HomeViewModel {
         let dispatchGroup = DispatchGroup()
 
         for item in posts {
-            guard let imageUrl = item.image else { continue }
+            guard let imageUrl = item.image else { return }
             dispatchGroup.enter()
             network.downloadImage(imageUrl: imageUrl) { [weak self] result in
                 switch result {
