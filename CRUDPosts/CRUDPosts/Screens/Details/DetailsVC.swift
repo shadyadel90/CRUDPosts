@@ -1,7 +1,7 @@
 import UIKit
 
-class DetailsVC: UIViewController {
-
+class DetailsVC: UIViewController,UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
     
     @IBOutlet weak var imgPost: UIImageView!
     
@@ -16,6 +16,8 @@ class DetailsVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        imgPost.isUserInteractionEnabled = true
+        imgPost.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(selectImage)))
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -24,7 +26,20 @@ class DetailsVC: UIViewController {
         txtPostTitle.text = post.title ?? "Unnamed"
         txtPostMessage.text = post.message ?? "Undefiend"
     }
+    @objc func selectImage() {
+        let picker = UIImagePickerController()
+        picker.delegate = self
+        picker.sourceType = .photoLibrary
+        present(picker, animated: true)
+    }
     
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        if let selectedImage = info[.originalImage] as? UIImage {
+            imgPost.image = selectedImage
+        }
+        picker.dismiss(animated: true)
+    }
     @IBAction func deletePostBtnClicked(_ sender: UIButton) {
         guard let id = post.id else { return }
         network.deletePost(id: id)
@@ -38,11 +53,11 @@ class DetailsVC: UIViewController {
     @IBAction func updatePostBtnClicked(_ sender: UIButton) {
         self.view.showLoadingIndicator()
         network.updatePost(id: post.id!, title: txtPostTitle.text ?? "Unknown Title", message: txtPostMessage.text ?? "Unknown Message", image: imgPost.image)
-
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-                self.view.hideLoadingIndicator()
-                self.navigationController?.popViewController(animated: true)
-            }
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+            self.view.hideLoadingIndicator()
+            self.navigationController?.popViewController(animated: true)
+        }
     }
     
 }

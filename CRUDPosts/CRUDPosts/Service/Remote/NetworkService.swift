@@ -107,7 +107,7 @@ class NetworkService: FetchDatafromNetwork, deleteAndUpdatePosts, createNewPost 
         
         
         let validImage = image ?? UIImage(named: "Image")
-        if let imageData = validImage?.pngData() {
+        if let imageData = validImage?.jpegData(compressionQuality: 0) {
             body.append("--\(boundary)\r\n".data(using: .utf8)!)
             body.append("Content-Disposition: form-data; name=\"post_image\"; filename=\"image.jpg\"\r\n".data(using: .utf8)!)
             body.append("Content-Type: image/jpeg\r\n\r\n".data(using: .utf8)!)
@@ -152,7 +152,7 @@ class NetworkService: FetchDatafromNetwork, deleteAndUpdatePosts, createNewPost 
         body.append("\(message)\r\n".data(using: .utf8)!)
         
         let validImage = image ?? UIImage(named: "Image")
-        if let imageData = validImage?.pngData() {
+        if let imageData = validImage?.jpegData(compressionQuality: 0) {
             body.append("--\(boundary)\r\n".data(using: .utf8)!)
             body.append("Content-Disposition: form-data; name=\"post_image\"; filename=\"image.jpg\"\r\n".data(using: .utf8)!)
             body.append("Content-Type: image/jpeg\r\n\r\n".data(using: .utf8)!)
@@ -167,10 +167,12 @@ class NetworkService: FetchDatafromNetwork, deleteAndUpdatePosts, createNewPost 
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             guard let data = data, error == nil else {
                 print("Error: \(error?.localizedDescription ?? "Unknown error")")
+                print("error")
                 return
             }
             if let responseString = String(data: data, encoding: .utf8) {
                 print("Response: \(responseString)")
+                print("sent")
             }
         }
         
